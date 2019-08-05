@@ -7,11 +7,14 @@ A starter application template for Typescript based NodeJs backend REST API deve
 * CORS, body parsing, compression middlewares.
 
 Use the following command to install the application :-
+    
     git clone https://github.com/ishaan-shringi/nodejs-express-starter.git
-	npm i
-	
+    npm i
+
 Run the application in development mode :-
-	npm run dev
+
+```npm run dev```
 	
 For production build :-
-    npm run build
+
+```npm run build```
