@@ -43,4 +43,67 @@ router.get("/:program_id", (req: Request, res: Response) => {
     }
 })
 
+router.post("/", (req: Request, res: Response) => {
+    let program: Program = req.body.program
+    if(program) {
+        db.new_program(program)
+        .then((new_id: number) => {
+            res.status(200).json({
+                success: true,
+                new_program_id: new_id
+            })
+        }).catch((error) => {
+            res.status(200).json({
+                success: false,
+                error: error
+            })
+        })
+    } else {
+        res.status(200).json({
+            success: false,
+            error: "Program parameter missing"
+        })
+    }
+})
+
+router.put("/", (req: Request, res: Response) => {
+    let program: Program = req.body.program
+    if(program) {
+        db.update_program(program)
+        .then(() => {
+            res.status(200).json({success: true})
+        }).catch((error) => {
+            res.status(200).json({
+                success: false,
+                error: error
+            })
+        })
+    } else {
+        res.status(200).json({
+            success: false,
+            error: "Program parameter missing"
+        })
+    }
+})
+
+router.delete("/:program_id", (req: Request, res: Response) => {
+    let program_id: number = parseInt(req.params.program_id)
+    if(program_id) {
+        db.delete_program(program_id)
+        .then(() => {
+            res.status(200).json({success: true})
+        }).catch((error) => {
+            res.status(200).json({
+                success: false,
+                error: error
+            })
+        })
+    } else {
+        res.status(200).json({
+            success: false,
+            error: "Program parameter missing"
+        })
+    }
+})
+
 export default router

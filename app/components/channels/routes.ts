@@ -15,7 +15,6 @@ router.get("/", (req: Request, res: Response) => {
 
 router.get("/:channel_id", (req: Request, res: Response) => {
     let channel_id: number = parseInt(req.params.channel_id)
-    console.log(channel_id)
     if(Number.isInteger(channel_id) && channel_id) {
         db.get_channel_by_id(channel_id).then((channel: Channel) => {
             res.status(200).json({
