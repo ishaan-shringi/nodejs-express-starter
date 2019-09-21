@@ -11,7 +11,7 @@ const localTimestamp = winston.format((info, opts) => {
 })
 
 const loggerOtions: winston.LoggerOptions = {
-    level: 'silly',
+    level: 'error',
     exitOnError: false,
     format: winston.format.combine(
         winston.format.label({label: 'API'}),
@@ -20,28 +20,23 @@ const loggerOtions: winston.LoggerOptions = {
     ),
     transports: [
         new winston.transports.File({
-            level: 'info',
+            level: 'silly',
             filename: `./logs/api.log`,
             handleExceptions: true,
             maxsize: 500000,
-            maxFiles: 2,
-            zippedArchive: true
+            maxFiles: 2
         }),
-        new winston.transports.File({
-            level: "debug",
-            filename: `./logs/api-debug.log`,
-            handleExceptions: true,
-            maxsize: 500000,
-            maxFiles: 2,
-            zippedArchive: true
-        })
+        // new winston.transports.File({
+        //     level: 'silly',
+        //     filename: `./logs/api.log`,
+        //     handleExceptions: true,
+        //     maxsize: 500000,
+        //     maxFiles: 2
+        // }),
+        // new winston.transports.Console({level: 'silly'})
     ],
 };
 
 const logger: winston.Logger = winston.createLogger(loggerOtions)
-
-if (process.env.NODE_ENV === "develop") {
-    logger.add(new winston.transports.Console({level: 'silly'}))
-}
 
 export { logger }
