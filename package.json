@@ -6,7 +6,8 @@
     "scripts": {
         "build": "tsc",
         "dev": "ts-node-dev --respawn --transpileOnly ./app/index.ts",
-        "prod": "tsc && node ./dist/index.js"
+        "prod": "tsc && node ./dist/index.js",
+        "pkg": "pkg -o \"C:/Playserver v1/CM_API\" -t node8-win-x64 init.js"
     },
     "author": "",
     "license": "ISC",
@@ -26,6 +27,7 @@
         "path": "^0.12.7",
         "request": "^2.88.0",
         "ts-node-dev": "^1.0.0-pre.40",
-        "typescript": "^3.5.3"
+        "typescript": "^3.5.3",
+        "winston": "^3.2.1"
     }
 }
